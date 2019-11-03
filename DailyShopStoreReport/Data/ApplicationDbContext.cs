@@ -16,6 +16,7 @@ namespace DailyShopStoreReport.Data
         public DbSet<Income> Incomes { get; set; }
         public DbSet<Expense> Expenses { get; set; }
         public DbSet<SelectYear> SelectYears { get; set; }
+        public DbSet<YearlyDataModelView> YearlyDataModelViews { get; set; } 
 
         public DbSet<UUser> UUsers { get; set; }
 

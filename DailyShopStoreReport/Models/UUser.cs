@@ -14,9 +14,10 @@ namespace DailyShopStoreReport.Models
         [Display(Name = "User Name")]
         public string Name { get; set; }
 
-        [Required(ErrorMessage = "Email is required")]
-        [RegularExpression(@"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$",
-            ErrorMessage = "Invalid email format")]
+        [Required(ErrorMessage = "Please provide Email Address.")]       
+        [Display(Name = "Email Address")]
+        [EmailAddress]
+        [RegularExpression(@"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", ErrorMessage = "Please provide valid email")]
         public string UEmail { get; set; }
          
 
