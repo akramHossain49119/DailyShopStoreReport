@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29424.173
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DailyShopStoreReport", "DailyShopStoreReport.csproj", "{C02BB600-DE41-4B53-8F45-6348AE75BA14}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DailyShopStoreReport", "DailyShopStoreReport.csproj", "{288E38C4-0413-4E22-988C-794AC7F313F9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{C02BB600-DE41-4B53-8F45-6348AE75BA14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C02BB600-DE41-4B53-8F45-6348AE75BA14}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C02BB600-DE41-4B53-8F45-6348AE75BA14}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C02BB600-DE41-4B53-8F45-6348AE75BA14}.Release|Any CPU.Build.0 = Release|Any CPU
+		{288E38C4-0413-4E22-988C-794AC7F313F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{288E38C4-0413-4E22-988C-794AC7F313F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{288E38C4-0413-4E22-988C-794AC7F313F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{288E38C4-0413-4E22-988C-794AC7F313F9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {85AF7901-82DB-4390-84B6-108B14175F1A}
+		SolutionGuid = {45862E83-1D10-407F-93A5-A8D83342CB66}
 	EndGlobalSection
 EndGlobal

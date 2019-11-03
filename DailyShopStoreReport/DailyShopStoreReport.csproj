@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
-    <UserSecretsId>aspnet-DailyShopStoreReport-81A13798-C1A0-4783-95DB-76EDD5A48128</UserSecretsId>
+    <UserSecretsId>aspnet-DailyShopStoreReport-7ABE4132-A269-421B-AB4C-6A08067C04E0</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerfileContext>.</DockerfileContext>
   </PropertyGroup>
