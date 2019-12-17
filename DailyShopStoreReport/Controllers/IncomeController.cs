@@ -50,8 +50,8 @@ namespace DailyShopStoreReport.Controllers
         // GET: Income/Create
         public IActionResult Create()
         {
-            ViewData["AppUserId"] = new SelectList(_context.AppUsers, "UserName", "UserName");
-            ViewData["IdentityRoleId"] = new SelectList(_context.Roles, "Name", "Name");
+            ViewData["AppUserId"] = new SelectList(_context.AppUsers, "Id", "UserName");
+            ViewData["IdentityRoleId"] = new SelectList(_context.Roles, "Id", "Name");
             return View();
         }
 
@@ -60,18 +60,19 @@ namespace DailyShopStoreReport.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Income income)
+        public async Task<IActionResult> Create([Bind("IncomeName,AppUserId,IdentityRoleId,Type,Amount,ChequeNo,BankName,Particular,Date,IsApproved")] Income income)
         {
-            //if (ModelState.IsValid)
-            //{
+            if (ModelState.IsValid)
+            {
                 try
                 {
                     _context.Incomes.Add(income);
-                    await _context.SaveChangesAsync(); 
+                    await _context.SaveChangesAsync();
 
                     TempData["success"] = "Data Submited!";
-                   ViewData["AppUserId"] = new SelectList(_context.AppUsers, "Id", "UserName", income.AppUserId);
-                return RedirectToAction("Show", "Income");
+                    ViewData["AppUserId"] = new SelectList(_context.AppUsers, "Id", "UserName", income.AppUserId);
+                    return RedirectToAction("Show", "Income");
+                    //return RedirectToAction(nameof(Index));
                 }
                 catch (Exception e)
                 {
@@ -81,7 +82,7 @@ namespace DailyShopStoreReport.Controllers
                 //_context.Add(income);
                 //await _context.SaveChangesAsync();
                 //return RedirectToAction(nameof(Index));
-            //}
+            }
             ViewData["AppUserId"] = new SelectList(_context.AppUsers, "UserName", "UserName", income.AppUserId);
            //ViewData["IdentityRoleId"] = new SelectList(_context.Roles, "Name", "Name", income.IdentityRoleId);
             return View(income);
@@ -100,8 +101,8 @@ namespace DailyShopStoreReport.Controllers
             {
                 return NotFound();
             }
-            ViewData["AppUserId"] = new SelectList(_context.AppUsers, "UserName", "UserName");
-            ViewData["IdentityRoleId"] = new SelectList(_context.Roles, "Name", "Name");
+            ViewData["AppUserId"] = new SelectList(_context.AppUsers, "Id", "UserName");
+            ViewData["IdentityRoleId"] = new SelectList(_context.Roles, "Id", "Name");
             return View(income);
         }
 
@@ -110,7 +111,7 @@ namespace DailyShopStoreReport.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IncomeName,Id,AppUserId,IdentityRoleId,Type,Amount,ChequeNo,BankName,Particular,Date,IsApproved")] Income income)
+        public async Task<IActionResult> Edit(int id, [Bind("IncomeName,AppUserId,IdentityRoleId,Type,Amount,ChequeNo,BankName,Particular,Date,IsApproved")] Income income)
         {
             if (id != income.Id)
             {
@@ -137,9 +138,8 @@ namespace DailyShopStoreReport.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["AppUserId"] = new SelectList(_context.AppUsers, "UserName", "UserName", income.AppUserId);
-            //ViewData["IdentityRoleId"] = new SelectList(_context.Roles, "Name", "Name", income.IdentityRoleId);
-            return View(income);
+            ViewData["AppUserId"] = new SelectList(_context.AppUsers, "Id", "UserName");
+            ViewData["IdentityRoleId"] = new SelectList(_context.Roles, "Id", "Name"); return View(income);
         }
 
         // GET: Income/Delete/5

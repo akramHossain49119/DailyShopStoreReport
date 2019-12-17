@@ -18,11 +18,11 @@ namespace DailyShopStoreReport.Models
         [Required]
         [Display(Name = "User Name")]
         public string AppUserId { get; set; }
-        public virtual AppUser AppUser { get; set; } 
+        public virtual AppUser AppUser { get; set; }
 
-        //[Display(Name = "User Role")]
-        //public string IdentityRoleId { get; set; }  
-        //public virtual IdentityRole IdentityRole { get; set; }  
+        [Display(Name = "User Role")]
+        public string IdentityRoleId { get; set; }
+        public virtual IdentityRole IdentityRole { get; set; }
 
         [Column(TypeName = "varchar(20)")]
         [Required(ErrorMessage = "Expense Type is required")]
