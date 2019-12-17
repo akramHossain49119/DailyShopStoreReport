@@ -1,49 +1,117 @@
-﻿<!DOCTYPE html>
-<html lang="en">
+﻿@{
+    string controller = ViewContext.RouteData.Values["controller"].ToString();
+    string action = ViewContext.RouteData.Values["action"].ToString();
+
+}
+<!DOCTYPE html>
+
+<html>
 <head>
     <meta charset="utf-8" />
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - DailyShopStoreReport</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
+    <title>@ViewBag.Title - MicroCreditInfo</title>
+    <link rel="icon" type="image/png" href="~/login/images/icons/favicon.ico" />
+
+    @if (controller == "Account")
+    {
+        <link rel="stylesheet" type="text/css" href="~/lib/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="~/lib/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="~/lib/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+        <link rel="stylesheet" type="text/css" href="~/login/css/util.css">
+        <link rel="stylesheet" type="text/css" href="~/login/css/main.css">
+    }
+    else
+    {
+        <link href="~/main/style.css" rel="stylesheet">
+        <link href="~/main/css/responsive.css" rel="stylesheet">
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+        <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.0/css/buttons.dataTables.min.css">
+        <link rel="stylesheet" href="~/main/main.css">
+    }
+
 </head>
 <body>
-    <header style=" background-color:green; color: white;">
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3" style=" background-color:green; color: white;">
-            <div class="container" style=" background-color:green; color: white;">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">DailyShopStoreReport</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <partial name="_LoginPartial" />
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container" style=" background-color:lightgrey; color: black;">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
 
-    <footer class="border-top footer text-muted" style=" background-color:black; color: white;">
-        <div class="container">
-            &copy; @DateTime.Now.ToString(); DailyShopStoreReport - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+    @if (controller != "Account")
+    {
+        <partial name="_NavBar" />
+    }
+
+    @RenderBody()
+
+    @if (controller != "Account")
+    {
+
+        <partial name="_Footer" />
+    }
+
+    @if (controller == "LandingPage")
+    {
+        <script src="~/main/js/jquery-2.2.4.min.js"></script>
+        <script src="~/main/js/popper.min.js"></script>
+        <script src="~/main/js/bootstrap.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script src="~/main/js/plugins.js"></script>
+        <script src="~/main/js/active.js"></script>
+    }
+    else
+    {
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="~/main/js/popper.min.js"></script>
+        <script src="~/main/js/bootstrap.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+        <script type="text/javascript" src="https://cdn.datatables.net/1.10.8/js/jquery.dataTables.min.js"></script>
+        if (controller == "Report")
+        {
+            <script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
+
+            <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.flash.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+
+
+            <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
+            <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js"></script>
+            <script>
+                $('#dataTable').DataTable({
+                    "searching": false,
+                    dom: 'Bfrtip',
+                    buttons: [
+                        'pdf'
+                    ]
+                });
+            </script>
+        }
+        else
+        {
+            <script>
+                $('#dataTable').DataTable();
+            </script>
+        }
+
+        <script>
+
+            $('.datepicker').datepicker({
+                format: 'yyyy-mm-dd',
+                "setDate": new Date(),
+                "autoclose": true
+            });
+        </script>
+    }
+
+
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+
+
     @RenderSection("Scripts", required: false)
 </body>
 </html>
+

@@ -1,0 +1,110 @@
+﻿@using System.Security.Claims
+@model Income
+
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<style>
+
+    .cheque:focus ~ .chequeprops {
+        display: none;
+    }
+
+    .cash:focus ~ .alert {
+        display: block;
+    }
+</style>
+
+<div class="container col-md-8" style="margin-top: 150px;margin-bottom: 100px;">
+    <h2>@ViewBag.Title</h2>
+    <div class="row">
+        <div class="col-md-4">
+            <form method="post" asp-action="Create" asp-controller="Income">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="IncomeName" class="control-label"></label>
+                    <input asp-for="IncomeName" class="form-control" />
+                    <span asp-validation-for="IncomeName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="AppUserId" class="control-label"></label>
+                    <select asp-for="AppUserId" class="form-control" asp-items="ViewBag.AppUserId"></select>
+                </div>
+                @*<div class="form-group">
+                    <label asp-for="IdentityRoleId" class="control-label"></label>
+                    <select asp-for="IdentityRoleId" class="form-control" asp-items="ViewBag.IdentityRoleId"></select>
+                </div>*@
+                <div class="form-group">
+                    @*<label asp-for="Type" class="control-label"></label>
+                        <input asp-for="Type" class="form-control" />
+                        <span asp-validation-for="Type" class="text-danger"></span>*@
+
+                    <label>Income Type:</label>
+                    <div class="radio" id="hide">
+                        <label><input asp-for="Type" type="radio" value="Cash" checked>Cash</label>
+                    </div>
+                    <div class="radio" id="show">
+                        <label><input asp-for="Type" type="radio" value="Cheque">Cheque</label>
+                    </div>
+                    <span asp-validation-for="Type" class="text-danger"></span>
+
+                </div>
+                <div class="form-group">
+                    <label asp-for="Amount" class="control-label"></label>
+                    <input asp-for="Amount" class="form-control" />
+                    <span asp-validation-for="Amount" class="text-danger"></span>
+                </div>
+                <div class="form-group chequeprops">
+                    <label asp-for="ChequeNo" class="control-label"></label>
+                    <input asp-for="ChequeNo" class="form-control" />
+                    <span asp-validation-for="ChequeNo" class="text-danger"></span>
+                </div>
+                <div class="form-group chequeprops">
+                    <label asp-for="BankName" class="control-label"></label>
+                    <input asp-for="BankName" class="form-control" />
+                    <span asp-validation-for="BankName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Particular" class="control-label"></label>
+                    <textarea asp-for="Particular" class="form-control"></textarea>
+                    <span asp-validation-for="Particular" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Date" class="control-label"></label>
+                    <input asp-for="Date" class="form-control datepicker" />
+                    <span asp-validation-for="Date" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label>
+                            <input asp-for="IsApproved" /> @Html.DisplayNameFor(model => model.IsApproved)
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="hidden" asp-for="Id" value="@User.FindFirstValue(ClaimTypes.NameIdentifier)" />
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
+
+    @section Scripts {
+
+        <script>
+            $(function () {
+                $("#hide").click(function () {
+                    $(".chequeprops").hide(500);
+                });
+                $("#show").click(function () {
+                    $(".chequeprops").show(500);
+                });
+            });
+        </script>
+    }

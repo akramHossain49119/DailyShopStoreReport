@@ -16,13 +16,12 @@ namespace DailyShopStoreReport.Data
         public DbSet<Income> Incomes { get; set; }
         public DbSet<Expense> Expenses { get; set; }
         public DbSet<SelectYear> SelectYears { get; set; }
-        public DbSet<YearlyDataModelView> YearlyDataModelViews { get; set; } 
-
-        public DbSet<UUser> UUsers { get; set; }
+        public DbSet<YearlyDataModelView> YearlyDataModelViews { get; set; }
 
 
-        public DbSet<AppUser> AppUsers { get; set; }
-        public DbSet<AppRole> AppRole { get; set; }
+        public DbSet<AppUser> AppUsers { get; set; } 
+        //public DbSet<AppRole> AppRoles { get; set; } 
+
         public DbSet<AppPermission> AppPermissions { get; set; }
         public DbSet<AppMenu> AppMenus { get; set; }
 

@@ -9,15 +9,12 @@ namespace DailyShopStoreReport.Models
 {
     public class Income : AmountCalculate
     {
+
         public Income()
         {
             
         }
-        [Key] 
-        public int IncId { get; set; } 
-
-
-
+        
         [Column(TypeName = "varchar(20)")]
         [Required(ErrorMessage = "Income Name is required")] 
         public string IncomeName { get; set; }

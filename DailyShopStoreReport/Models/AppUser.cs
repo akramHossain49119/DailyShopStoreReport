@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace DailyShopStoreReport.Models 
 {
-    public class AppUser: IdentityUser<int>
+    public class AppUser: IdentityUser 
     {
         public AppUser():base()
         {
@@ -16,5 +16,5 @@ namespace DailyShopStoreReport.Models
         public string Name { get; set; }
 
         
-    }
+    } 
 }

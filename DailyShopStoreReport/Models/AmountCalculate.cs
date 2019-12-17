@@ -4,6 +4,8 @@ using System.Linq;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Threading.Tasks;
+using DailyShopStoreReport.ViewModel;
+using Microsoft.AspNetCore.Identity;
 
 namespace DailyShopStoreReport.Models
 {
@@ -11,17 +13,16 @@ namespace DailyShopStoreReport.Models
     {
 
         [Key]
-        public int CalId { get; set; } 
+        public int Id { get; set; } 
 
         [Required]
         [Display(Name = "User Name")]
-        public string UserId { get; set; }
-        public AppUser User { get; set; }
+        public string AppUserId { get; set; }
+        public virtual AppUser AppUser { get; set; } 
 
-        [Display(Name = "User Role")]
-        public virtual AppRole AppRole { get; set; }
-        public int AppRoleId { get; set; }
-
+        //[Display(Name = "User Role")]
+        //public string IdentityRoleId { get; set; }  
+        //public virtual IdentityRole IdentityRole { get; set; }  
 
         [Column(TypeName = "varchar(20)")]
         [Required(ErrorMessage = "Expense Type is required")]

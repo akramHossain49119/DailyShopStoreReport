@@ -1,0 +1,80 @@
+﻿@inject SignInManager<AppUser> signInManager;
+@inject UserManager<AppUser> UserManager;
+
+@{
+
+    bool isJrAccountant = User.IsInRole("JrAccountant");
+
+}
+<header class="header_area clearfix" style="background: lightseagreen;">
+    <div class="container-fluid h-100">
+        <div class="row h-100">
+            <!-- Menu Area Start -->
+            <div class="col-12 h-100">
+                <div class="menu_area h-100">
+                    <nav class="navbar h-100 navbar-expand-lg align-items-center">
+                        <a asp-action="Index" asp-controller="LandingPage" class="navbar-brand" style="color: white;">
+                            DailyShopStoreReport 
+                        </a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mosh-navbar" aria-controls="mosh-navbar" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                        <div class="collapse navbar-collapse justify-content-end" id="mosh-navbar">
+                            @if (signInManager.IsSignedIn(User))
+                            {
+                                <ul class="navbar-nav animated" id="nav">
+                                    <li class="nav-item active"><a asp-action="Index" asp-controller="Dashboard" class="nav-link" style="color: white;">Dashboard</a></li>
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="moshDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Income</a>
+                                        <div class="dropdown-menu" aria-labelledby="moshDropdown">
+                                            @if (isJrAccountant)
+                                            {
+                                            <a asp-action="Create" asp-controller="Income" class="dropdown-item">Create</a>
+                                            }
+                                        <a asp-action="Create" asp-controller="Income" class="dropdown-item">Create</a> 
+                                            <a asp-action="Show" asp-controller="Income" class="dropdown-item">View</a>
+                                        </div>
+                                    </li>
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="moshDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Expense</a>
+                                        <div class="dropdown-menu" aria-labelledby="moshDropdown">
+                                            @if (isJrAccountant)
+                                            {
+                                               <a asp-action="Store" asp-controller="Expense" class="dropdown-item">Store</a>
+                                            }
+                                            <a asp-action="Store" asp-controller="Expense" class="dropdown-item">Store</a>
+                                            <a asp-action="Show" asp-controller="Expense" class="dropdown-item">View</a>
+                                    
+                                        </div>
+                                    </li>
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="moshDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Report</a>
+                                        <div class="dropdown-menu" aria-labelledby="moshDropdown">
+                                            <a asp-action="ViewMonthlyIncome" asp-controller="Report" class="dropdown-item">Monthly Income</a>
+                                            <a asp-action="ViewMonthlyExpense" asp-controller="Report" class="dropdown-item">Monthly Expense</a>
+                                            <a asp-action="ViewYearlyProfit" asp-controller="Report" class="dropdown-item">Yearly Profit</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <div class="login-register-btn" style="margin-left:10px;">
+                                    <form method="post" asp-action="Logout" asp-controller="Account">
+                                        <button type="submit" style="color: white; font-size: 18px; background: none; border: none; cursor: pointer">Logout</button>
+                                    </form>
+                                </div>
+                                <div class="login-register-btn" style="margin-left:10px;">
+                                    <form method="post" asp-action="Login" asp-controller="Account">
+                                        <button type="submit" style="color: white; font-size: 18px; background: none; border: none; cursor: pointer">Login</button>
+                                    </form>
+                                </div>
+                            }
+                            else
+                            {
+                            <div class="login-register-btn" style="color: white;">
+                                <a asp-action="Login" asp-controller="Account" class="dropdown-item" style="color: white;">Login</a>
+                            </div>
+                            }
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

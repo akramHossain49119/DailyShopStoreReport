@@ -10,8 +10,7 @@ namespace DailyShopStoreReport.Models
 {
     public class Expense: AmountCalculate
     {
-        [Key]  
-        public int ExpId { get; set; }
+        public new int  Id { get; set; }
 
         public Expense()
         {

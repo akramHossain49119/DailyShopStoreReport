@@ -19,11 +19,7 @@ namespace DailyShopStoreReport.Models
         [EmailAddress]
         [RegularExpression(@"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", ErrorMessage = "Please provide valid email")]
         public string UEmail { get; set; }
-         
 
-        [Display(Name = "User Role")]
-        public virtual AppRole AppRole { get; set; }
-        public int AppRoleId { get; set; } 
 
 
         [Required]

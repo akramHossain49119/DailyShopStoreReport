@@ -19,10 +19,6 @@ namespace DailyShopStoreReport.ViewModel
         [Column(TypeName = "nvarchar(500)")]
         public string UserName { get; set; }
 
-        [Required]
-        [Display(Name = "User Role")]
-        public virtual AppRole AppRole { get; set; }
-        public int AppRoleId { get; set; }
 
         [Required]
         [EmailAddress]
@@ -43,9 +39,6 @@ namespace DailyShopStoreReport.ViewModel
         [DataType(DataType.PhoneNumber)]
         [Column(TypeName = "nvarchar(500)")]
         public string PhoneNumber { get; set; }
-
-       // Name
-
 
 
 

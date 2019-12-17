@@ -1,0 +1,95 @@
+﻿@using System.Security.Claims
+@model Income
+
+@{
+    ViewBag.Title = "Store Income";
+}
+
+<style>
+
+    .cheque:focus ~ .chequeprops {
+        display: none;
+    }
+
+    .cash:focus ~ .alert {
+        display: block;
+    }
+</style>
+
+<div class="container col-md-8" style="margin-top: 150px;margin-bottom: 100px;">
+    <h2>@ViewBag.Title</h2>
+    <form method="post" asp-action="Store" asp-controller="Income">
+        <div class="form-group">
+            <label asp-for="IncomeName" class="control-label"></label>
+            <input asp-for="IncomeName" class="form-control" />
+            <span asp-validation-for="IncomeName" class="text-danger"></span>
+        </div>
+        @*<div class="form-group">
+            <label asp-for="AppUserId" class="control-label"></label>
+            <input asp-for="AppUserId" class="form-control" />
+            <select asp-for="AppUserId" class="form-control" asp-items="ViewBag.AppUserId"></select>
+            <span asp-validation-for="AppUserId" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="IdentityRoleId" class="control-label"></label>
+            <select asp-for="IdentityRoleId" class="form-control" asp-items="ViewBag.AppRoleId"></select>
+            <span asp-validation-for="IdentityRoleId" class="text-danger"></span>
+        </div>*@
+        <div class="form-group">
+            <label asp-for="Amount">Amount:</label>
+            <input asp-for="Amount" type="text" class="form-control" placeholder="Enter amount">
+            <span asp-validation-for="Amount" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label>Income Type:</label>
+            <div class="radio" id="hide">
+                <label><input asp-for="Type" type="radio" value="Cash" checked>Cash</label>
+            </div>
+            <div class="radio" id="show">
+                <label><input asp-for="Type" type="radio" value="Cheque">Cheque</label>
+            </div>
+            <span asp-validation-for="Type" class="text-danger"></span>
+        </div>
+        <div class="form-group chequeprops" style="display: none;">
+            <label asp-for="ChequeNo">Check No:</label>
+            <input asp-for="ChequeNo" type="text" class="form-control" placeholder="Enter cheque no">
+        </div>
+        <div class="form-group chequeprops" style="display: none;">
+            <label asp-for="BankName">Bank Name:</label>
+            <input asp-for="BankName" type="text" class="form-control" placeholder="Enter bank name">
+        </div>
+        <div class="form-group">
+            <label asp-for="Particular">Particular:</label>
+            <textarea asp-for="Particular" class="form-control" placeholder="Write.."></textarea>
+            <span asp-validation-for="Particular" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Date">Date:</label>
+            <input type="text" asp-for="Date" class="form-control datepicker">
+            <span asp-validation-for="Date" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <div class="checkbox">
+                <label>
+                    <input asp-for="IsApproved" /> @Html.DisplayNameFor(model => model.IsApproved)
+                </label>
+            </div>
+        </div>
+        <input type="hidden" asp-for="Id" value="@User.FindFirstValue(ClaimTypes.NameIdentifier)" />
+        <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+</div>
+
+@section Scripts{
+
+    <script>
+        $(function () {
+            $("#hide").click(function () {
+                $(".chequeprops").hide(500);
+            });
+            $("#show").click(function () {
+                $(".chequeprops").show(500);
+            });
+        });
+    </script>
+}

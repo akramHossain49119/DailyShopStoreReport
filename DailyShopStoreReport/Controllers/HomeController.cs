@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using DailyShopStoreReport.Models;
+using log4net;
 
 namespace DailyShopStoreReport.Controllers
 {
@@ -18,8 +19,12 @@ namespace DailyShopStoreReport.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public IActionResult Index([FromServices] ILog log)
         {
+            var services = this.HttpContext.RequestServices;
+            var fog = (ILog)services.GetService(typeof(ILog));
+            fog.Info("Index method executing"); 
+
             return View();
         }
 

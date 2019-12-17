@@ -1,27 +1,21 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DailyShopStoreReport.Models  
 {
-    public class AppPermission: IdentityUser<int>
+    public class AppPermission  
     {
-        public AppPermission() : base() 
-        {
-        }
 
-        [Display(Name = "User Role")]
-        public virtual AppRole AppRole { get; set; } 
-        public int AppRoleId { get; set; } 
-
-
-        [Display(Name = "User Menu")]
-        public virtual AppMenu AppMenu { get; set; }
-        public int AppMenuId { get; set; } 
+        [Key]
+        public int ApId { get; set; }  
 
 
 
-
-
+        //[ForeignKey("NavigationMenu")]
+        public Guid? AppMenuId { get; set; }
+        public virtual AppMenu AppMenus { get; set; }
 
     }
 }

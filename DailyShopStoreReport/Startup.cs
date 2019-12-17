@@ -15,6 +15,9 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
 using log4net;
+using Microsoft.Extensions.Logging;
+using DailyShopStoreReport.Seeder;
+using DailyShopStoreReport.Models;
 
 namespace DailyShopStoreReport
 {
@@ -30,8 +33,6 @@ namespace DailyShopStoreReport
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddDbContext<ApplicationDbContext>(options =>
-            //    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             //the lines below were provided by sir - Begin
             services.AddDbContext<ApplicationDbContext>(options =>
@@ -39,21 +40,33 @@ namespace DailyShopStoreReport
             //end
 
             //Added by SKILLET- Begin
-            services.AddIdentity<IdentityUser, IdentityRole>(options =>
+            services.AddIdentity<AppUser, IdentityRole>(options =>
             {
-                options.SignIn.RequireConfirmedAccount = true;
+                //Password settings.
+
                 options.Password.RequiredLength = 8;
+                options.Password.RequiredUniqueChars = 0;
+                options.Password.RequireDigit = true;
+                options.Password.RequireLowercase = true;
+                options.Password.RequireNonAlphanumeric = true;
+                options.Password.RequireUppercase = true;
+                options.Password.RequiredLength = 6;
                 options.Password.RequiredUniqueChars = 1;
-                options.Password.RequireUppercase = false;
+
+                // Lockout settings.
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+                options.Lockout.MaxFailedAccessAttempts = 5;
+                options.Lockout.AllowedForNewUsers = true;
+
+                // User settings.
+                options.User.AllowedUserNameCharacters =
+                    "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
+                options.User.RequireUniqueEmail = false;
+
             }).AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
 
             //End
 
-            //services.AddSingleton<AppPermission, AppMenu>(options =>options.AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
-
-
-            //services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-            //    .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
 
@@ -75,15 +88,8 @@ namespace DailyShopStoreReport
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IServiceProvider pro, IApplicationBuilder app, IWebHostEnvironment env, ApplicationDbContext context, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ApplicationDbContext context, UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager)
         {
-            pro = app.ApplicationServices;
-            var logger = pro.GetService<ILog>();
-            var log = (ILog)pro.GetService(typeof(ILog));
-
-            //pro = HttpContext.RequestServ;
-            //pro = Services.BuildServiceProvider();
-
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -101,28 +107,18 @@ namespace DailyShopStoreReport
 
             app.UseRouting();
 
-            //Authentication middleware  Added by Skillet- Begin 
             app.UseAuthentication();
-            //End
-
             app.UseAuthorization();
 
-            //app.UseEndpoints(endpoints =>
-            //{
-            //    endpoints.MapControllerRoute(
-            //        name: "default",
-            //        pattern: "{controller=Home}/{action=Index}/{id?}");
-            //    endpoints.MapRazorPages();
-            //});
-            // app.(context, userManager, roleManager).Wait();
-            app.UseEndpoints(endpoints =>
+            app.UseEndpoints(endpoints => 
             {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
-                endpoints.MapRazorPages();
+                 endpoints.MapControllerRoute(
+                 name: "default",
+                 pattern: "{controller=LandingPage}/{action=Index}/{id?}");
+                 endpoints.MapRazorPages();
             });
-            //TableSeeder.Initialize(context, userManager, roleManager).Wait();
+            TableSeeder.Initialize(context, userManager, roleManager).Wait();
         }
-    }
+
+   }
 }
