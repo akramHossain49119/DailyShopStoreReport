@@ -12,7 +12,7 @@ namespace DailyShopStoreReport.Models
 
         [Required]
         [Display(Name = "User Name")]
-        public string Name { get; set; }
+        public string Name { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "Please provide Email Address.")]       
         [Display(Name = "Email Address")]
@@ -24,12 +24,12 @@ namespace DailyShopStoreReport.Models
 
         [Required]
         [Display(Name = "User Subject")]
-        public string USubject { get; set; }
+        public string USubject { get; set; } = string.Empty;
 
 
         [Display(Name = "User Description")]
 
-        public string UAddress { get; set; } 
+        public string UAddress { get; set; } = string.Empty;
 
 
 

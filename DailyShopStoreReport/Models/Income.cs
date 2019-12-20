@@ -17,7 +17,7 @@ namespace DailyShopStoreReport.Models
         
         [Column(TypeName = "varchar(20)")]
         [Required(ErrorMessage = "Income Name is required")] 
-        public string IncomeName { get; set; }
-               
+        public string IncomeName { get; set; } 
+
     }
 }

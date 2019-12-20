@@ -83,8 +83,8 @@ namespace DailyShopStoreReport.Controllers
                 //await _context.SaveChangesAsync();
                 //return RedirectToAction(nameof(Index));
             }
-            ViewData["AppUserId"] = new SelectList(_context.AppUsers, "UserName", "UserName", income.AppUserId);
-           //ViewData["IdentityRoleId"] = new SelectList(_context.Roles, "Name", "Name", income.IdentityRoleId);
+            ViewData["AppUserId"] = new SelectList(_context.AppUsers, "Id", "UserName");
+            ViewData["IdentityRoleId"] = new SelectList(_context.Roles, "Id", "Name");
             return View(income);
         }
 
@@ -141,6 +141,8 @@ namespace DailyShopStoreReport.Controllers
             ViewData["AppUserId"] = new SelectList(_context.AppUsers, "Id", "UserName");
             ViewData["IdentityRoleId"] = new SelectList(_context.Roles, "Id", "Name"); return View(income);
         }
+
+
 
         // GET: Income/Delete/5
         public async Task<IActionResult> Delete(int? id)

@@ -2,9 +2,7 @@
 @inject UserManager<AppUser> UserManager;
 
 @{
-
     bool isJrAccountant = User.IsInRole("JrAccountant");
-
 }
 <header class="header_area clearfix" style="background: lightseagreen;">
     <div class="container-fluid h-100">
@@ -27,9 +25,9 @@
                                         <div class="dropdown-menu" aria-labelledby="moshDropdown">
                                             @if (isJrAccountant)
                                             {
-                                            <a asp-action="Create" asp-controller="Income" class="dropdown-item">Create</a>
+                                                <a asp-action="Create" asp-controller="Income" class="dropdown-item">Create</a>
                                             }
-                                        <a asp-action="Create" asp-controller="Income" class="dropdown-item">Create</a> 
+                                            <a asp-action="Create" asp-controller="Income" class="dropdown-item">Create</a> 
                                             <a asp-action="Show" asp-controller="Income" class="dropdown-item">View</a>
                                         </div>
                                     </li>

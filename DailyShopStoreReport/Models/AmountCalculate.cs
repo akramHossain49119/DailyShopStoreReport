@@ -47,7 +47,7 @@ namespace DailyShopStoreReport.Models
         [Column(TypeName = "datetime")]
         [Required(ErrorMessage = "Date is required")]
         [DataType(DataType.Date, ErrorMessage = "Date format is invalid")]
-        public DateTime Date { get; set; }
+        public DateTime Date { get; set; } = DateTime.MinValue;
 
         [Column(TypeName = "bit")]
         public bool IsApproved { get; set; }

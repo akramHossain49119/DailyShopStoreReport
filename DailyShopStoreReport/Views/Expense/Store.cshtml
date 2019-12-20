@@ -1,40 +1,29 @@
 ﻿@using System.Security.Claims
-@model Income
+@model Expense
+
 
 @{
-    ViewBag.Title = "Store Income";
+    ViewBag.Title = "Store"; 
 }
-
-<style>
-
-    .cheque:focus ~ .chequeprops {
-        display: none;
-    }
-
-    .cash:focus ~ .alert {
-        display: block;
-    }
-</style>
 
 <div class="container col-md-8" style="margin-top: 150px;margin-bottom: 100px;">
     <h2>@ViewBag.Title</h2>
-    <form method="post" asp-action="Store" asp-controller="Income">
+    <form method="post" asp-action="Store" asp-controller="Expense">
+
         <div class="form-group">
-            <label asp-for="IncomeName" class="control-label"></label>
-            <input asp-for="IncomeName" class="form-control" />
-            <span asp-validation-for="IncomeName" class="text-danger"></span>
+            <label asp-for="ExpenseName" class="control-label"></label>
+            <input asp-for="ExpenseName" class="form-control" />
+            <span asp-validation-for="ExpenseName" class="text-danger"></span>
         </div>
-        @*<div class="form-group">
+        <div class="form-group">
             <label asp-for="AppUserId" class="control-label"></label>
-            <input asp-for="AppUserId" class="form-control" />
             <select asp-for="AppUserId" class="form-control" asp-items="ViewBag.AppUserId"></select>
-            <span asp-validation-for="AppUserId" class="text-danger"></span>
         </div>
+
         <div class="form-group">
             <label asp-for="IdentityRoleId" class="control-label"></label>
-            <select asp-for="IdentityRoleId" class="form-control" asp-items="ViewBag.AppRoleId"></select>
-            <span asp-validation-for="IdentityRoleId" class="text-danger"></span>
-        </div>*@
+            <select asp-for="IdentityRoleId" class="form-control" asp-items="ViewBag.IdentityRoleId"></select>
+        </div>
         <div class="form-group">
             <label asp-for="Amount">Amount:</label>
             <input asp-for="Amount" type="text" class="form-control" placeholder="Enter amount">
@@ -68,28 +57,18 @@
             <input type="text" asp-for="Date" class="form-control datepicker">
             <span asp-validation-for="Date" class="text-danger"></span>
         </div>
-        <div class="form-group">
-            <div class="checkbox">
-                <label>
-                    <input asp-for="IsApproved" /> @Html.DisplayNameFor(model => model.IsApproved)
-                </label>
-            </div>
-        </div>
         <input type="hidden" asp-for="Id" value="@User.FindFirstValue(ClaimTypes.NameIdentifier)" />
         <button type="submit" class="btn btn-default">Submit</button>
     </form>
 </div>
 
 @section Scripts{
-
-    <script>
-        $(function () {
+    <script>$(function () {
             $("#hide").click(function () {
                 $(".chequeprops").hide(500);
             });
             $("#show").click(function () {
                 $(".chequeprops").show(500);
             });
-        });
-    </script>
+        });</script>
 }
