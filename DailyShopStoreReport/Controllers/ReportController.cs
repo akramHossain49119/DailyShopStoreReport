@@ -28,13 +28,13 @@ namespace DailyShopStoreReport.Controllers
         public IActionResult ViewMonthlyIncome()
         {
             ViewData["GetYear"] = new SelectList(_context.SelectYears, "YrId", "YearName");
-            return View();
+            var model = _context.Incomes.ToList();
+            return View(model);
         }
 
 
-        //[HttpPost]
-
-        [HttpGet]
+        [HttpPost]
+        //[HttpGet]
         public IActionResult ViewMonthlyIncome(string month = "", string year = "")
         {
             if (string.IsNullOrEmpty(month) && string.IsNullOrEmpty(year))
@@ -60,13 +60,15 @@ namespace DailyShopStoreReport.Controllers
             return View(incomes);
         }
 
+        [HttpGet]
         public IActionResult ViewMonthlyExpense()
         {
             ViewData["GetYear"] = new SelectList(_context.SelectYears, "YrId", "YearName");
-            return View();
+            var model = _context.Expenses.ToList();
+            return View(model); 
         }
 
-        [HttpGet]
+        [HttpPost]
         public IActionResult ViewMonthlyExpense(string month = "", string year = "")
         {
             if (string.IsNullOrEmpty(month) && string.IsNullOrEmpty(year))
@@ -84,12 +86,14 @@ namespace DailyShopStoreReport.Controllers
             return View(expenses);
         }
 
-        public IActionResult ViewYearlyProfit()
-        {
-            ViewData["GetYear"] = new SelectList(_context.SelectYears, "YrId", "YearName");
-            return View();
-        }
+        //public IActionResult ViewYearlyProfit()
+        //{
+        //    ViewData["GetYear"] = new SelectList(_context.SelectYears, "YrId", "YearName");
+        //    var model = _context.YearlyDataModelViews.ToList();
+        //    return View(model); 
+        //}
 
+       ///[HttpPost]
         public IActionResult ViewYearlyProfit(int? year)
         {
             if (year == null)

@@ -19,6 +19,7 @@ namespace DailyShopStoreReport.Data
         public DbSet<YearlyDataModelView> YearlyDataModelViews { get; set; }
 
 
+       
         public DbSet<AppUser> AppUsers { get; set; } 
         //public DbSet<AppRole> AppRoles { get; set; } 
 
