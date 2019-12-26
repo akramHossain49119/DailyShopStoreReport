@@ -9,6 +9,7 @@ namespace DailyShopStoreReport.Models
     {
         public int  Id { get; set; } 
         public int MonthId { get; set; }
+        public DateTime Year { get; set; } 
         public double IncomeAmount { get; set; }
         public double ExpenseAmount { get; set; }
         public double Profit { get; set; }

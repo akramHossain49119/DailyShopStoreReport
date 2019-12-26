@@ -88,9 +88,6 @@ namespace DailyShopStoreReport.Migrations
                     b.Property<string>("ChequeNo")
                         .HasColumnType("varchar(100)");
 
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime");
-
                     b.Property<string>("ExpenseName")
                         .IsRequired()
                         .HasColumnType("varchar(20)");
@@ -104,6 +101,9 @@ namespace DailyShopStoreReport.Migrations
                     b.Property<string>("Particular")
                         .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<DateTime>("PerDate")
+                        .HasColumnType("Datetime");
 
                     b.Property<string>("Type")
                         .IsRequired()
@@ -138,9 +138,6 @@ namespace DailyShopStoreReport.Migrations
                     b.Property<string>("ChequeNo")
                         .HasColumnType("varchar(100)");
 
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime");
-
                     b.Property<string>("IdentityRoleId")
                         .HasColumnType("nvarchar(450)");
 
@@ -154,6 +151,9 @@ namespace DailyShopStoreReport.Migrations
                     b.Property<string>("Particular")
                         .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<DateTime>("PerDate")
+                        .HasColumnType("Datetime");
 
                     b.Property<string>("Type")
                         .IsRequired()
@@ -201,6 +201,9 @@ namespace DailyShopStoreReport.Migrations
 
                     b.Property<double>("Profit")
                         .HasColumnType("float");
+
+                    b.Property<DateTime>("Year")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 

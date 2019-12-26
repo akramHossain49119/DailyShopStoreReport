@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DailyShopStoreReport.Migrations
 {
-    public partial class bvc : Migration
+    public partial class PerDatDateTimePropertyxzs : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -91,6 +91,7 @@ namespace DailyShopStoreReport.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     MonthId = table.Column<int>(nullable: false),
+                    Year = table.Column<DateTime>(nullable: false),
                     IncomeAmount = table.Column<double>(nullable: false),
                     ExpenseAmount = table.Column<double>(nullable: false),
                     Profit = table.Column<double>(nullable: false)
@@ -239,7 +240,7 @@ namespace DailyShopStoreReport.Migrations
                     ChequeNo = table.Column<string>(type: "varchar(100)", nullable: true),
                     BankName = table.Column<string>(type: "varchar(250)", nullable: true),
                     Particular = table.Column<string>(type: "text", nullable: false),
-                    Date = table.Column<DateTime>(type: "datetime", nullable: false),
+                    PerDate = table.Column<DateTime>(type: "Datetime", nullable: false),
                     IsApproved = table.Column<bool>(type: "bit", nullable: false),
                     ExpenseName = table.Column<string>(type: "varchar(20)", nullable: false)
                 },
@@ -273,7 +274,7 @@ namespace DailyShopStoreReport.Migrations
                     ChequeNo = table.Column<string>(type: "varchar(100)", nullable: true),
                     BankName = table.Column<string>(type: "varchar(250)", nullable: true),
                     Particular = table.Column<string>(type: "text", nullable: false),
-                    Date = table.Column<DateTime>(type: "datetime", nullable: false),
+                    PerDate = table.Column<DateTime>(type: "Datetime", nullable: false),
                     IsApproved = table.Column<bool>(type: "bit", nullable: false),
                     IncomeName = table.Column<string>(type: "varchar(20)", nullable: false)
                 },

@@ -48,9 +48,9 @@
                         @foreach (Expense expense in Model)
                         {
                             i++;
-                            <tr>
+                            <tr> 
                                 <td>@i</td>
-                                <td>@expense.Date.ToString("dd-MMMM-yyyy")</td>
+                                <td>@expense.PerDate.ToString("dd-MMMM-yyyy")</td>
                                 <td>@expense.Amount</td>
                                 <td>@expense.Type</td>
                                 <td>

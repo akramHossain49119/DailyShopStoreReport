@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Threading.Tasks;
 using DailyShopStoreReport.ViewModel;
 using Microsoft.AspNetCore.Identity;
+using OfficeOpenXml.FormulaParsing.Excel.Functions.DateTime;
 
 namespace DailyShopStoreReport.Models
 {
@@ -44,10 +45,13 @@ namespace DailyShopStoreReport.Models
         [Required(ErrorMessage = "Particular is required")]
         public string Particular { get; set; }
 
-        [Column(TypeName = "datetime")]
+        [Column(TypeName = "Datetime")]
         [Required(ErrorMessage = "Date is required")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         [DataType(DataType.Date, ErrorMessage = "Date format is invalid")]
-        public DateTime Date { get; set; } = DateTime.MinValue;
+        public DateTime PerDate { get; set; }
+
+        //= DateTime.MinValue;
 
         [Column(TypeName = "bit")]
         public bool IsApproved { get; set; }
@@ -55,6 +59,7 @@ namespace DailyShopStoreReport.Models
         public AmountCalculate()
         {
             IsApproved = false;
+            PerDate = DateTime.Now;
         }
 
     }
