@@ -1,10 +1,10 @@
 ﻿@model List<Expense>
 
 @{
-    ViewBag.Title = "ViewMonthlyExpense";
+    ViewBag.Title = "Monthly Report: Expense";
     int i = 0;
-    string month = ViewBag.Month;
-    string year = ViewBag.Year;
+    //string month = ViewBag.Month;
+    //string year = ViewBag.Year;
 }
 
 <div class="container col-md-8" style="margin-top: 150px;margin-bottom: 100px;">
@@ -13,16 +13,27 @@
         <div class="panel-title">
             <h4>View monthly expense(s)</h4>
         </div>
-        <form method="get">
+        <form method="post"> 
             <div class="row">
                 <div class="form-group col-md-4">
                     <select class="form-control" name="month" id="month" asp-items="Helper.GetMonths()"></select>
+               
                 </div>
                 <div class="form-group col-md-4">
-                    <select class="form-control" name="year" id="year" asp-items="ViewBag.GetYear"></select>
+                    @*<select class="form-control" name="year" id="year" asp-items="ViewBag.Years"></select>*@
+                   
+                    <select class="form-control" name="year" id="year">
+                        @{
+                            foreach (var aYear in @ViewBag.Years)
+                            {
+                                <option value=@aYear.YearName> @aYear.YearName</option>
+                            }
+                        }
+                    </select>
+
                 </div>
                 <div class="col-md-4">
-                    <button class="btn btn-success pull-right" id="getData" type="submit"> Show </button>
+                    <button class="btn btn-success pull-right" id="getData" type="submit" value="ViewMonthlyExpense"> View Monthly Expense  </button>
                 </div>
                 <br /><br />
             </div>
@@ -75,12 +86,12 @@
         </div>
     </div>
 </div>
-@section Scripts{
+@*@section Scripts{
     <script>
             $(function () {
                 $('#month').val('@month');
                 $('#year').val('@year');
             });
     </script>
-}
+}*@
 

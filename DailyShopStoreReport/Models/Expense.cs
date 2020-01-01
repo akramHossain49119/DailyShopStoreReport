@@ -10,13 +10,12 @@ namespace DailyShopStoreReport.Models
 {
     public class Expense: AmountCalculate
     {
-        public new int  Id { get; set; }
-
         public Expense()
         {
 
         }
 
+        [Display(Name = "Expense Name")]
         [Column(TypeName = "varchar(20)")]
         [Required(ErrorMessage = "Expense Name is required")]
         public string ExpenseName { get; set; } 

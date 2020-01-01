@@ -1,8 +1,8 @@
-﻿
+﻿@using System.Security.Claims
 @model List<Income>
 
 @{
-    ViewBag.Title = "Show"; 
+    ViewBag.Title = "Show";
     int i = 0;
     bool isSrAccount = User.IsInRole("SrAccountant");
 }
@@ -51,7 +51,7 @@
                             <tr>
                                 <td>@i</td>
                                 <td>@income.PerDate.ToString("dd MMMM yyyy")</td>
-                                <td>@income.Amount</td> 
+                                <td>@income.Amount</td>
                                 <td>@income.Type</td>
                                 <td>
                                     @if (income.Type == "Cheque")
@@ -66,11 +66,11 @@
                                 <td>@income.Particular</td>
                                 @if (isSrAccount)
                                 {
-                                 <td class="checkbox text-center">
-                                     <label>
-                                        <input name="isApproved[]" value="@income.Id" type="checkbox" />
-                                     </label>
-                                 </td>
+                                    <td class="checkbox text-center">
+                                        <label>
+                                            <input name="isApproved[]" value="@income.Id" type="checkbox" />
+                                        </label>
+                                    </td>
                                 }
                             </tr>
                         }

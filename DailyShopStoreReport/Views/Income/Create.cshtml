@@ -73,13 +73,19 @@
                     <input asp-for="PerDate" class="form-control datepicker" />
                     <span asp-validation-for="PerDate" class="text-danger"></span>
                 </div>
-                <div class="form-group">
-                    <div class="checkbox">
-                        <label>
-                            <input asp-for="IsApproved" /> @Html.DisplayNameFor(model => model.IsApproved)
-                        </label>
-                    </div>
-                </div>
+                @*<div class="form-group">
+
+                        <div class="checkbox">
+                            <label>
+                                @if (!isJrAccountant)
+                                {
+                                    <input asp-for="IsApproved" /> @Html.DisplayNameFor(model => model.IsApproved)
+                                }
+                            </label>
+                        </div>
+
+
+                </div>*@
                 <div class="form-group">
                     <input type="hidden" asp-for="Id" value="@User.FindFirstValue(ClaimTypes.NameIdentifier)" />
                     <input type="submit" value="Create" class="btn btn-default" />

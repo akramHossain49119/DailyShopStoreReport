@@ -12,6 +12,8 @@ namespace DailyShopStoreReport
         {
             List<SelectListItem> months = new List<SelectListItem>()
             {
+                new SelectListItem("Select Month ... ", "Select Month ... "),
+                new SelectListItem("January", "January"),
                 new SelectListItem("January", "January"),
                 new SelectListItem("February", "February"),
                 new SelectListItem("March", "March"),

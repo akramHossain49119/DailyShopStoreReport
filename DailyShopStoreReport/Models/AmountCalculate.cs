@@ -9,12 +9,14 @@ using Microsoft.AspNetCore.Identity;
 using OfficeOpenXml.FormulaParsing.Excel.Functions.DateTime;
 
 namespace DailyShopStoreReport.Models
-{
+{ 
+
     public class AmountCalculate
     {
-
         [Key]
-        public int Id { get; set; } 
+        public int Id { get; set; }
+
+
 
         [Required]
         [Display(Name = "User Name")]
@@ -45,7 +47,7 @@ namespace DailyShopStoreReport.Models
         [Required(ErrorMessage = "Particular is required")]
         public string Particular { get; set; }
 
-        [Column(TypeName = "Datetime")]
+        [Column(TypeName = "Date")] 
         [Required(ErrorMessage = "Date is required")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         [DataType(DataType.Date, ErrorMessage = "Date format is invalid")]

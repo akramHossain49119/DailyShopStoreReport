@@ -4,14 +4,16 @@ using DailyShopStoreReport.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DailyShopStoreReport.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20191231062822_PerdateProperty")]
+    partial class PerdateProperty
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -196,7 +198,7 @@ namespace DailyShopStoreReport.Migrations
                     b.Property<double>("IncomeAmount")
                         .HasColumnType("float");
 
-                    b.Property<int>("Month")
+                    b.Property<int>("MonthId")
                         .HasColumnType("int");
 
                     b.Property<double>("Profit")
